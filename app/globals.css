@@ -69,4 +69,11 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  .logo-title {
+    @apply text-xl font-bold
+  }
+  .nav-item{
+    @apply text-sm hover:text-gray-600
+  }
+  
 }
