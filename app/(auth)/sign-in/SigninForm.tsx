@@ -50,7 +50,7 @@ const SigninForm = () => {
         title: "Success !",
         description: "Welcome Back",
       });
-      redirect("/dashboard/home");
+      redirect("/dashboard");
     }
   }
   return (

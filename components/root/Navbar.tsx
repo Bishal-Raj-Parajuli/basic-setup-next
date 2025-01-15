@@ -28,7 +28,7 @@ const Navbar = async ({ session }: { session: Session | null }) => {
             </Link>
             {session && session.user ? (
               <>
-                <Link href="/dashboard/home" className="nav-item">
+                <Link href="/dashboard" className="nav-item">
                   <Button>Dashboard</Button>
                 </Link>
                 <Popover>
@@ -112,7 +112,7 @@ const Navbar = async ({ session }: { session: Session | null }) => {
                         <LogOutIcon className="w-5 mr-2" />
                         Logout
                       </Button>
-                      <Link href="/dashboard/home" className="nav-item">
+                      <Link href="/dashboard" className="nav-item">
                         <Button className="w-full">Dashboard</Button>
                       </Link>
                     </>
