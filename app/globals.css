@@ -75,5 +75,9 @@ body {
   .nav-item{
     @apply text-sm hover:text-gray-600
   }
+
+  .auth-form-btn {
+    @apply mt-10 w-full !important
+  }
   
 }
