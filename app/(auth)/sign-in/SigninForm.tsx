@@ -14,6 +14,9 @@ import Link from "next/link";
 import React from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
+import { signInUser } from "../actions";
+import { toast } from "@/hooks/use-toast";
+import { redirect } from "next/navigation";
 
 const signInFormSchema = z.object({
   email: z.string().min(2, { message: "This field is required." }).email(),
@@ -34,8 +37,21 @@ const SigninForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof signInFormSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof signInFormSchema>) {
+    const result = await signInUser(values);
+    if (!result.success) {
+      toast({
+        variant: "destructive",
+        title: "Error Signing In",
+        description: result.error,
+      });
+    } else {
+      toast({
+        title: "Success !",
+        description: "Welcome Back",
+      });
+      redirect("/dashboard/home");
+    }
   }
   return (
     <Form {...signInForm}>

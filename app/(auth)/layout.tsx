@@ -1,8 +1,12 @@
+import { auth } from "@/auth";
 import { AppWindow } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React, { ReactNode } from "react";
 
-const layout = ({ children }: { children: ReactNode }) => {
+const layout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
+  if (session?.user) redirect("/dashboard/home");
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10">
       <div className="flex w-full max-w-sm flex-col gap-6">
