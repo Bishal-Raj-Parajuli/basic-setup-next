@@ -3,9 +3,10 @@
 ### Todo
 
 #### 1. Setup Next js
+
 - Add Shadcn ✅
 - Basic Landing Page ✅
-- Basic Login and Signup Page 
+- Basic Login and Signup Page
 - Dashboard Page
 
 #### 2. Add Postgress Database
@@ -20,5 +21,3 @@
 #### 5. Add Session handelling
 
 #### 6. Add User Roles
-
-
