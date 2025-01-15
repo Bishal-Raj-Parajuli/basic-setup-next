@@ -11,12 +11,12 @@ export const USER_TYPE_ENUM = pgEnum("user_type", ["USER", "AMDIN"]);
 export const USER_STATUS = pgEnum("user_status", ["PENDING", "VERIFIED"]);
 
 export const users = pgTable("users", {
-  id: uuid("id").primaryKey().unique().notNull(),
+  id: uuid("id").primaryKey().unique().notNull().defaultRandom(),
   fullName: varchar("full_name", { length: 255 }).notNull(),
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
-  userType: USER_TYPE_ENUM("user_type").default("USER"),
-  status: USER_STATUS("user_status").default("PENDING"),
+  userType: USER_TYPE_ENUM("user_type").default("USER").notNull(),
+  status: USER_STATUS("user_status").default("PENDING").notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true })
     .defaultNow()
     .notNull(),

@@ -14,6 +14,9 @@ import Link from "next/link";
 import React from "react";
 import { useForm, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
+import { signUpUserData } from "../actions";
+import { useToast } from "@/hooks/use-toast";
+import { redirect, useRouter } from "next/navigation";
 
 const signUpFormSchema = z
   .object({
@@ -44,6 +47,7 @@ const signUpFormSchema = z
   });
 
 const SignupForm = () => {
+  const { toast } = useToast();
   const signInForm: UseFormReturn<z.infer<typeof signUpFormSchema>> = useForm({
     resolver: zodResolver(signUpFormSchema),
     defaultValues: {
@@ -54,8 +58,21 @@ const SignupForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof signUpFormSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof signUpFormSchema>) {
+    const result = await signUpUserData(values);
+    if (!result.success) {
+      toast({
+        variant: "destructive",
+        title: "Oops !",
+        description: `Error: ${result.error}`,
+      });
+    } else {
+      toast({
+        title: "Success !",
+        description: `Thankyou for signing up.`,
+      });
+      redirect("/sign-in");
+    }
   }
   return (
     <Form {...signInForm}>
