@@ -45,7 +45,7 @@ const data = {
       title: "Playground",
       url: "#",
       icon: SquareTerminal,
-      isActive: true,
+      isActive: false,
       items: [
         {
           title: "History",
